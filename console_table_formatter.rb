@@ -8,18 +8,19 @@ class ConsoleTableFormatter
     @total_func = nil
   end
   def strfmt(text, width, align)
-    padding_len = text.length < width ? width - text.length : 0
+    ftext = text.strip
+    padding_len = ftext.length < width ? width - ftext.length : 0
     
     if align == :center
       padlen_rgt = (padding_len / 2).to_i
       padlen_lft = padding_len - padlen_rgt
-      "#{" " * padlen_lft}#{text[0, width]}#{" " * padlen_rgt}#"
+      "#{" " * padlen_lft}#{ftext[0, width]}#{" " * padlen_rgt}"
     else
       padding = " " * padding_len
       if align == :right
-        "#{padding}#{text[0, width]}"
+        "#{padding}#{ftext[0, width]}"
       else
-        "#{text[0, width]}#{padding}"
+        "#{ftext[0, width]}#{padding}"
       end
     end
   end
